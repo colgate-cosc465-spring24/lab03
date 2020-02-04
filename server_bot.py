@@ -24,6 +24,8 @@ def main():
             # Handle client
             client_sock, client_addr = server_sock.accept()
             request = recv_request(server_sock)
+            print("Received request from %s:%d for %s" %
+                    (client_addr[0], client_addr[1], request["URI"]))
             send_response(server_sock, request)
             client_sock.close()
 
