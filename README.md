@@ -108,13 +108,12 @@ To see the details of the HTTP header, incude the command line argument `-O http
 ```bash
 $ ./docker_exec.sh tshark -O http port 80
 ```
-
 For each packet (or "frame"), Tshark will ouput the following information:
 * The number and size of the packet 
 * The source (`Src`) and destination (`Dst`) hardware addresses contained in the link layer (i.e., `Ethernet`) header
 * The source (`Src`) and destination (`Dst`) Internet Protocol (IP) addresses contained in the network layer (i.e., `Internet Protol`) header
 * The source (`Src Port`) and destination (`Dst Port`) ports and sequence (`Seq`) and acknowledgement (`Ack`) numbers included in the transport layer (i.e., `Transmission Conrol Protocol`) header
-* The contents of the application layer (i.e., `HyperText Transfer Protocol`) header (if present)
+* The detailed contents of the application layer (i.e., `HyperText Transfer Protocol`) header (if present)
 
 If an HTTP packet is incomplete or improperly formatted, tshark may not be able to "decode" it. In this case, you’ll want to look at the raw payload of the TCP (Transmission Control Protocol) packets, using the command:
 ```bash
