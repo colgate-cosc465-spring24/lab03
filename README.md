@@ -118,7 +118,7 @@ For each packet (or "frame"), Tshark will ouput the following information:
 
 If an HTTP packet is incomplete or improperly formatted, tshark may not be able to "decode" it. In this case, you’ll want to look at the raw payload of the TCP (Transmission Control Protocol) packets, using the command:
 ```bash
-$ ./docker_exec.sh tshark -T fields -e tcp.segment_data port 80 | ./decode_hex.py 
+$ ./docker_exec.sh tshark --disable-protocol http  -T fields -e data.data port 80 | ./decode_hex.py
 ```
 (`decode_hex.py` is a script included in your git repo that converts hex to ascii.)
 
