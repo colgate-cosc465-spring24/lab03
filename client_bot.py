@@ -38,10 +38,11 @@ def send_request(sock, uri, host):
     # Construct request parts
     first = "GET %s" % uri
     host = "Host: %s" % host
-    agent = "UserAgent client_bot"
+    agent = "UserAgent client_bot/2022.02"
+    accept = "Accept: */*"
         
     # Construct full request
-    request = "\r\n".join([first, host, agent])
+    request = "\n".join([first, host, agent, accept])
 
     # Send response
     sock.send(request.encode())
