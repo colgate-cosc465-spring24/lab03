@@ -11,7 +11,7 @@ def main():
     arg_parser.add_argument('-p', '--port', dest='port', action='store',
             type=int, default=80, help='Port to connect on')
     arg_parser.add_argument('-h', '--hostname', dest='hostname', action='store',
-            default='picard.cs.colgate.edu', help='Port to connect on')
+            default='infinitepi.cs.colgate.edu', help='Port to connect on')
     settings = arg_parser.parse_args()
 
     input("Press Enter to run client_bot...")
@@ -38,7 +38,7 @@ def send_request(sock, uri, host):
     # Construct request parts
     first = "GET %s" % uri
     host = "Host: %s" % host
-    agent = "UserAgent client_bot/2022.02"
+    agent = "UserAgent client_bot/2024.02"
     accept = "Accept: */*"
         
     # Construct full request
