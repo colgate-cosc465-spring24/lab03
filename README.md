@@ -95,7 +95,7 @@ If an HTTP packet is incomplete or improperly formatted, TShark may not be able 
 ```
 (`decode_hex.py` is a script included in your git repo that converts hex to ascii.)
 
-Finally you will need **two** terminal windows (all connected to the **same** `tigers` server). You will run the following three commands (one in each terminal window) in the order listed below:
+Finally you will need **three** terminal windows (all connected to the **same** `tigers` server). You will run the following three commands (one in each terminal window) in the order listed below:
 1. **`./docker_exec.sh curl URL`**
     replacing `URL` with a web URL you want to request; this will determine what information get returned by the server as different websites return different output.
     Example:
@@ -106,7 +106,15 @@ Finally you will need **two** terminal windows (all connected to the **same** `t
         * `tshark` is the program to run within the Docker container
         * `-c` tells tshark stop after n packets (def. infinite)
         * `<packet_number>` is a filter that tells tshark to only capture and analyze packets those number of packets as mentioned in as an argument.
-Answer the Getting Started questions in `questions.md`
+3. **`./docker_exec.sh curl echo STRING | curl -F-=\<- qrenco.de`**
+    The command line arguments do the following:
+        * `echo` is a command used to display a message, usually a string
+        * `STRING` The message which needs to be displayed out.
+        * `-F-=\<-` is to make a HTTP POST data for multipart/form-data.
+
+Make your observations/difference clear in `questions.md`
+
+After finishing question.md try running **`./docker_exec.sh curl parrot.live`**
 
 ## Step 4: Fix `client_bot.py`
 
