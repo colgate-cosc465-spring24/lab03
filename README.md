@@ -21,7 +21,7 @@ First, you need to understand the intended behavior of `client_bot.py`. The prog
 
 To isolate your requests from others running on the same server, you’ll run `curl` in a Docker container. Your git repo includes a bash script for this purpose:
 ```bash
-$ ./docker_curl.sh http://infinitepi.cs.colgate.edu/agent.php
+./docker_curl.sh http://infinitepi.cs.colgate.edu/agent.php
 ```
 
 The script builds a Docker image containing `curl` (and a Python wrapper script) and runs a container based on this image. After the container is running, you should see the output:
@@ -43,7 +43,7 @@ Note that the output for [http://infinitepi.cs.colgate.edu/agent.php](http://inf
 ## Step 2: Run `client_bot.py` with Docker
 Now, you should run `client_bot.py` in a Docker container. Your git repo includes a bash script for this purpose:
 ```bash
-$ ./docker_client.sh infinitepi.cs.colgate.edu 80
+./docker_client.sh infinitepi.cs.colgate.edu 80
 ```
 
 After the container is running, you should see the output:
@@ -60,14 +60,14 @@ If `client_bot.py` does not terminate (normally or abnormally), you can press `c
 ## Step 3: Running Tshark
 To help you debug `client_bot.py`, you’ll want to take advantage of TShark, which is a command-line tool for capturing and analyzing packets.  You can run TShark (or other commands) in your Docker container alongside `client_bot.py` (or `curl`). For example, to see all packets entering/exiting your running Docker container, run:
 ```bash
-$ ./docker_exec.sh tshark
+./docker_exec.sh tshark
 ```
 
 You need to run this command in a **separate** terminal window **after** your container is running but **before** you press Enter to run `client_bot`` or `curl``.
 
 To see only packets with a source or destination port of 80 (the standard port for HTTP), you can include a filter in your `tshark`` command:
 ```bash
-$ ./docker_exec.sh tshark port 80
+./docker_exec.sh tshark port 80
 ```
 
 For each packet, TShark will output the following information:
@@ -80,7 +80,7 @@ For each packet, TShark will output the following information:
 
 To see the details of the HTTP header, include the command line argument `-O http`:
 ```bash
-$ ./docker_exec.sh tshark -O http port 80
+./docker_exec.sh tshark -O http port 80
 ```
 For each packet (or "frame"), TShark will output the following information:
 * The number and size of the packet 
@@ -91,7 +91,7 @@ For each packet (or "frame"), TShark will output the following information:
 
 If an HTTP packet is incomplete or improperly formatted, TShark may not be able to "decode" it. In this case, you’ll want to look at the raw payload of the TCP (Transmission Control Protocol) packets, using the command:
 ```bash
-$ ./docker_exec.sh tshark --disable-protocol http  -T fields -e data.data port 80 | ./decode_hex.py
+./docker_exec.sh tshark --disable-protocol http  -T fields -e data.data port 80 | ./decode_hex.py
 ```
 (`decode_hex.py` is a script included in your git repo that converts hex to ascii.)
 
