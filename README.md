@@ -106,15 +106,14 @@ Finally you will need **three** terminal windows (all connected to the **same** 
         * `tshark` is the program to run within the Docker container
         * `-c` tells tshark stop after n packets (def. infinite)
         * `<packet_number>` is a filter that tells tshark to only capture and analyze packets those number of packets as mentioned in as an argument.
-3. **`./docker_exec.sh curl echo STRING | curl -F-=\<- qrenco.de`**
+3. **`./docker_exec.sh curl qrenco.de/STRING`**
     The command line arguments do the following:
         * `echo` is a command used to display a message, usually a string
-        * `STRING` The message which needs to be displayed out.
-        * `-F-=\<-` is to make a HTTP POST data for multipart/form-data.
+        * `STRING` The message which needs to be displayed out. Change it to colgate.edu and check the response.
 
-Make your observations/difference clear in `questions.md`
+Make your observations/difference for these three questions clear in `questions.md`
 
-After finishing question.md try running **`./docker_exec.sh curl parrot.live`**
+After finishing question.md inform your instructor about your progress before you proceed ahead.**
 
 ## Step 4: Fix `client_bot.py`
 
